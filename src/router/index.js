@@ -21,7 +21,7 @@ import Layout from '@/layout'
  * meta : {
     roles: ['admin','editor']    control the page roles (you can set multiple roles)
     title: 'title'               the name show in sidebar and breadcrumb (recommend set)
-    icon: 'svg-name'/'el-icon-x' the icon show in the sidebar
+    icon: 'svg-name'             the icon show in the sidebar
     noCache: true                if set true, the page will no be cached(default is false)
     affix: true                  if set true, the tag will affix in the tags-view
     breadcrumb: false            if set false, the item will hidden in breadcrumb(default is true)
@@ -34,51 +34,214 @@ import Layout from '@/layout'
  * a base page that does not have permission requirements
  * all roles can be accessed
  */
-export const constantRoutes = [
-  {
-    path: '/redirect',
-    component: Layout,
-    hidden: true,
-    children: [
-      {
-        path: '/redirect/:path(.*)',
-        component: () => import('@/views/redirect/index')
-      }
-    ]
+export const constantRoutes = [{
+  path: '/redirect',
+  component: Layout,
+  hidden: true,
+  children: [{
+    path: '/redirect/:path(.*)',
+    component: () => import('@/views/redirect/index')
+  }]
+},
+{
+  path: '/login',
+  component: () => import('@/views/login/index'),
+  hidden: true
+},
+{
+  path: '/auth-redirect',
+  component: () => import('@/views/login/auth-redirect'),
+  hidden: true
+},
+{
+  path: '/404',
+  component: () => import('@/views/error-page/404'),
+  hidden: true
+},
+{
+  path: '/401',
+  component: () => import('@/views/error-page/401'),
+  hidden: true
+},
+{
+  path: '/',
+  component: Layout,
+  redirect: '/dashboard',
+  children: [{
+    path: 'dashboard',
+    component: () => import('@/views/dashboard/index'),
+    name: 'Dashboard',
+    meta: {
+      title: 'Dashboard',
+      icon: 'dashboard',
+      affix: true
+    }
+  }]
+},
+{
+  path: '/service',
+  component: Layout,
+  redirect: '/service/list',
+  name: '服务管理',
+  meta: {
+    title: '服务管理',
+    icon: 'component'
+  },
+  children: [{
+    path: 'list',
+    component: () => import('@/views/service/list'),
+    name: '服务列表',
+    meta: {
+      title: '服务列表',
+      icon: 'component',
+      affix: true
+    }
   },
   {
-    path: '/login',
-    component: () => import('@/views/login/index'),
+    path: 'service_create_http',
+    component: () => import('@/views/service/http'),
+    name: '创建HTTP服务',
+    meta: {
+      title: '创建HTTP服务',
+      icon: 'component',
+      affix: false
+    },
     hidden: true
   },
   {
-    path: '/auth-redirect',
-    component: () => import('@/views/login/auth-redirect'),
+    path: 'service_edit_http/:id(\\d+)',
+    component: () => import('@/views/service/http'),
+    name: '修改HTTP服务',
+    meta: {
+      title: '修改HTTP服务',
+      icon: 'component',
+      affix: false
+    },
+    hidden: true
+  },
+  // http详情
+  {
+    path: 'service_detail_http/:id(\\d+)',
+    component: () => import('@/views/service/http_detail'),
+    name: 'HTTP服务详情',
+    meta: {
+      title: 'HTTP服务详情',
+      icon: 'component',
+      affix: false
+    },
     hidden: true
   },
   {
-    path: '/404',
-    component: () => import('@/views/error-page/404'),
+    path: 'service_create_tcp',
+    component: () => import('@/views/service/tcp'),
+    name: '创建TCP服务',
+    meta: {
+      title: '创建TCP服务',
+      icon: 'component',
+      affix: false
+    },
     hidden: true
   },
   {
-    path: '/401',
-    component: () => import('@/views/error-page/401'),
+    path: 'service_edit_tcp/:id(\\d+)',
+    component: () => import('@/views/service/tcp'),
+    name: '修改TCP服务',
+    meta: {
+      title: '修改TCP服务',
+      icon: 'component',
+      affix: false
+    },
+    hidden: true
+  },
+  // view TCP service details
+  {
+    path: 'service_detail_tcp/:id(\\d+)',
+    component: () => import('@/views/service/tcp_detail'),
+    name: 'TCP服务详情',
+    meta: {
+      title: 'TCP服务详情',
+      icon: 'component',
+      affix: false
+    },
     hidden: true
   },
   {
-    path: '/',
-    component: Layout,
-    redirect: '/dashboard',
-    children: [
-      {
-        path: 'dashboard',
-        component: () => import('@/views/dashboard/index'),
-        name: 'Dashboard',
-        meta: { title: 'Dashboard', icon: 'dashboard', affix: true }
-      }
-    ]
+    path: 'service_create_grpc',
+    component: () => import('@/views/service/grpc'),
+    name: '创建GRPC服务',
+    meta: {
+      title: '创建GRPC服务',
+      icon: 'component',
+      affix: false
+    },
+    hidden: true
+  },
+  {
+    path: 'service_edit_grpc/:id(\\d+)',
+    component: () => import('@/views/service/grpc'),
+    name: '修改GRPC服务',
+    meta: {
+      title: '修改GRPC服务',
+      icon: 'component',
+      affix: false
+    },
+    hidden: true
+  },
+  // view GRPC service details
+  {
+    path: 'service_detail_grpc/:id(\\d+)',
+    component: () => import('@/views/service/grpc_detail'),
+    name: 'GRPC服务详情',
+    meta: {
+      title: 'GRPC服务详情',
+      icon: 'component',
+      affix: false
+    },
+    hidden: true
   }
+  ]
+},
+{
+  path: '/app',
+  redirect: '/app/app_list',
+  component: Layout,
+  name: 'APP管理',
+  meta: {
+    title: 'APP管理',
+    icon: 'component'
+  },
+  children: [{
+    path: 'app_list',
+    component: () => import('@/views/app/app_list'),
+    name: 'APP列表',
+    meta: {
+      title: 'APP列表',
+      icon: 'component',
+      affix: false
+    }
+  },
+  {
+    path: 'app_create',
+    component: () => import('@/views/app/app'),
+    name: 'CreateApp',
+    meta: {
+      title: '创建APP',
+      icon: 'edit'
+    },
+    hidden: true
+  },
+  {
+    path: 'app_edit/:id(\\d+)',
+    component: () => import('@/views/app/app'),
+    name: 'EditApp',
+    meta: {
+      title: '修改APP',
+      icon: 'edit'
+    },
+    hidden: true
+  }
+  ]
+}
 ]
 
 /**
@@ -89,7 +252,9 @@ export const asyncRoutes = []
 
 const createRouter = () => new Router({
   // mode: 'history', // require service support
-  scrollBehavior: () => ({ y: 0 }),
+  scrollBehavior: () => ({
+    y: 0
+  }),
   routes: constantRoutes
 })
 
