@@ -4,7 +4,7 @@
       <el-card class="box-card">
         <div slot="header" class="clearfix" />
         <div slot="header" class="clearfix">
-          <span>{{ form.service_name }} 详情</span>
+          <span>{{ form.service_name }} HTTP服务详情</span>
         </div>
         <el-form ref="form" :model="form" label-width="140px">
           <el-form-item label="服务名称">
