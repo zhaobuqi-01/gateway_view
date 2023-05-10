@@ -5,7 +5,7 @@ Vue.use(Router)
 
 /* Layout */
 import Layout from '@/layout'
-
+import NotFound from '@//views/error-page/404'
 /* Router Modules */
 
 /**
@@ -42,6 +42,16 @@ export const constantRoutes = [{
     path: '/redirect/:path(.*)',
     component: () => import('@/views/redirect/index')
   }]
+},
+{
+  path: '*',
+  redirect: '/404',
+  hidden: true
+},
+{
+  path: '/404',
+  component: NotFound,
+  hidden: true
 },
 {
   path: '/login',
@@ -211,16 +221,6 @@ export const constantRoutes = [{
     name: 'EditApp',
     meta: {
       title: '修改租户'
-    },
-    hidden: true
-  },
-  {
-    path: 'app_stat/:id(\\d+)',
-    component: () => import('@/views/app/stat'),
-    name: 'AppStat',
-    meta: {
-      title: '租户流量统计',
-      noCache: true
     },
     hidden: true
   },
