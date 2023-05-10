@@ -119,18 +119,6 @@ export const constantRoutes = [{
     },
     hidden: true
   },
-  // http详情
-  {
-    path: 'service_detail_http/:id(\\d+)',
-    component: () => import('@/views/service/http_detail'),
-    name: 'HTTP服务详情',
-    meta: {
-      title: 'HTTP服务详情',
-      icon: 'component',
-      affix: false
-    },
-    hidden: true
-  },
   {
     path: 'service_create_tcp',
     component: () => import('@/views/service/tcp'),
@@ -148,18 +136,6 @@ export const constantRoutes = [{
     name: '修改TCP服务',
     meta: {
       title: '修改TCP服务',
-      icon: 'component',
-      affix: false
-    },
-    hidden: true
-  },
-  // view TCP service details
-  {
-    path: 'service_detail_tcp/:id(\\d+)',
-    component: () => import('@/views/service/tcp_detail'),
-    name: 'TCP服务详情',
-    meta: {
-      title: 'TCP服务详情',
       icon: 'component',
       affix: false
     },
@@ -187,13 +163,12 @@ export const constantRoutes = [{
     },
     hidden: true
   },
-  // view GRPC service details
   {
-    path: 'service_detail_grpc/:id(\\d+)',
-    component: () => import('@/views/service/grpc_detail'),
-    name: 'GRPC服务详情',
+    path: 'service_stat/:id(\\d+)',
+    component: () => import('@/views/service/stat'),
+    name: '服务统计',
     meta: {
-      title: 'GRPC服务详情',
+      title: '服务统计',
       icon: 'component',
       affix: false
     },
@@ -205,18 +180,18 @@ export const constantRoutes = [{
   path: '/app',
   redirect: '/app/app_list',
   component: Layout,
-  name: 'APP管理',
+  name: '租户管理',
   meta: {
-    title: 'APP管理',
-    icon: 'component'
+    title: '租户管理',
+    icon: 'user'
   },
   children: [{
     path: 'app_list',
     component: () => import('@/views/app/app_list'),
-    name: 'APP列表',
+    name: '租户列表',
     meta: {
-      title: 'APP列表',
-      icon: 'component',
+      title: '租户列表',
+      icon: 'user',
       affix: false
     }
   },
@@ -225,7 +200,7 @@ export const constantRoutes = [{
     component: () => import('@/views/app/app'),
     name: 'CreateApp',
     meta: {
-      title: '创建APP',
+      title: '创建租户',
       icon: 'edit'
     },
     hidden: true
@@ -235,8 +210,27 @@ export const constantRoutes = [{
     component: () => import('@/views/app/app'),
     name: 'EditApp',
     meta: {
-      title: '修改APP',
-      icon: 'edit'
+      title: '修改租户'
+    },
+    hidden: true
+  },
+  {
+    path: 'app_stat/:id(\\d+)',
+    component: () => import('@/views/app/stat'),
+    name: 'AppStat',
+    meta: {
+      title: '租户流量统计',
+      noCache: true
+    },
+    hidden: true
+  },
+  {
+    path: 'app_stat/:id(\\d+)',
+    component: () => import('@/views/app/stat'),
+    name: 'AppStat',
+    meta: {
+      title: '租户流量统计',
+      noCache: true
     },
     hidden: true
   }

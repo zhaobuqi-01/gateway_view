@@ -27,9 +27,15 @@ export default {
       required: true,
       default() {
         return {
-          title: '',
-          legend: [],
-          series: []
+          'title': '今日流量统计',
+          'legend': ['Industries', 'Technology', 'Forex', 'Gold', 'Forecasts'],
+          'series': [
+            { value: 320, name: 'Industries' },
+            { value: 240, name: 'Technology' },
+            { value: 149, name: 'Forex' },
+            { value: 100, name: 'Gold' },
+            { value: 59, name: 'Forecasts' }
+          ]
         }
       }
     }
@@ -81,7 +87,7 @@ export default {
         },
         series: [
           {
-            name: '',
+            name: '服务占比',
             type: 'pie',
             top: 20,
             // roseType: 'radius',

@@ -39,3 +39,11 @@ export function appUpdate(data) {
     data
   })
 }
+
+export function appStat(query) {
+  return request({
+    url: '/app/app_stat',
+    method: 'get',
+    params: query
+  })
+}

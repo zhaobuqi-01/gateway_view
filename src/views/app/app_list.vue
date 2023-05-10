@@ -3,7 +3,7 @@
     <div class="filter-container">
       <el-input
         v-model="listQuery.info"
-        placeholder="app_id/app_name"
+        placeholder="app_id/租户名称"
         style="width: 200px;"
         class="filter-item"
         @keyup.enter.native="handleFilter"
@@ -23,7 +23,7 @@
           type="primary"
           icon="el-icon-edit"
         >
-          添加APP
+          添加租户
         </el-button>
       </router-link>
     </div>
@@ -47,7 +47,7 @@
           <span>{{ row.app_id }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="APP名称" min-width="80px">
+      <el-table-column label="租户名称" min-width="80px">
         <template slot-scope="{ row }">
           <span>{{ row.name }}</span>
         </template>
@@ -74,7 +74,6 @@
         class-name="small-padding fixed-width"
       >
         <template slot-scope="{ row }">
-          <!-- 统计 -->
           <router-link :to="'/app/app_stat/'+row.id">
             <el-button
               type="primary"
@@ -92,7 +91,7 @@
             </el-button>
           </router-link>
           <el-button
-            type="danger"
+            type="primary"
             size="small"
             @click="handleDelete(row)"
           >删除</el-button>

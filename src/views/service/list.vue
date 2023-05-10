@@ -78,29 +78,6 @@
               统计
             </el-button>
           </router-link>
-
-          <!-- 详情按钮，仅在 load_type === 0（HTTP服务）时显示 -->
-          <router-link v-if="row.load_type === 0" :to="'/service/service_detail_http/' + row.id">
-            <el-button type="primary" size="mini">
-              详情
-            </el-button>
-          </router-link>
-
-          <!-- 详情按钮，仅在 load_type === 1（TCP服务）时显示 -->
-          <router-link v-if="row.load_type === 1" :to="'/service/service_detail_tcp/' + row.id">
-            <el-button type="primary" size="mini">
-              详情
-            </el-button>
-          </router-link>
-
-          <!-- 详情按钮，仅在 load_type === 2（GRPC服务）时显示 -->
-          <router-link v-if="row.load_type === 2" :to="'/service/service_detail_grpc/' + row.id">
-            <el-button type="primary" size="mini">
-              详情
-            </el-button>
-          </router-link>
-
-          <!-- 修改 -->
           <router-link v-if="row.load_type===0" :to="'/service/service_edit_http/'+row.id">
             <el-button type="primary" size="mini">
               修改
